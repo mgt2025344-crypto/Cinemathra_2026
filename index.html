@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <meta name="theme-color" content="#171114">
   <meta name="description" content="A personal invitation to CINEMATHRA 2026.">
   <title>CINEMATHRA 2026 | Personal Invitation</title>
@@ -43,45 +43,119 @@
     <!-- INVITATION / OPEN SPREAD -->
     <section class="invitation-screen" id="invitationScreen" aria-labelledby="inviteHeading" hidden>
       <div class="spread-wrap" id="spreadWrap">
-        <article class="paper-page left-page">
+
+        <!-- LEFT PAGE : THE BIG SCREEN AWAITS -->
+        <article class="paper-page left-page" id="leftPage">
+          <div class="beam" aria-hidden="true"></div>
+          <div class="light-sweep" aria-hidden="true"></div>
+          <span class="sparkle sp-1" aria-hidden="true"></span>
+          <span class="sparkle sp-2" aria-hidden="true"></span>
+          <span class="sparkle sp-3" aria-hidden="true"></span>
+
           <div class="page-topline"><span>ISSUE NO. 01</span><span>CINEMATHRA ’26</span></div>
           <div class="mini-filmstrip" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+
           <div class="left-page-content">
             <p class="comic-kicker">SPECIAL INVITATION</p>
-            <h2>THE<br><em>BIG</em><br>SCREEN<br>AWAITS.</h2>
+
+            <div class="title-frame">
+              <i class="corner tl" aria-hidden="true"></i><i class="corner tr" aria-hidden="true"></i>
+              <i class="corner bl" aria-hidden="true"></i><i class="corner br" aria-hidden="true"></i>
+              <span class="rec" aria-hidden="true"><b></b>REC</span>
+              <h2 class="big-title" id="inviteHeading" aria-label="The Big Screen Awaits.">
+                <span class="word word-the" aria-hidden="true">THE</span>
+                <span class="word word-big" aria-hidden="true">BIG</span>
+                <span class="word word-screen wave" aria-hidden="true">SCREEN</span>
+                <span class="word word-awaits wave" aria-hidden="true">AWAITS.</span>
+              </h2>
+            </div>
+
             <div class="yellow-scribble" aria-hidden="true"></div>
-            <p class="left-note">Every great story deserves an audience.<br>We would be honoured by yours.</p>
-            <div class="sticker">YOU’RE<br><strong>INVITED!</strong></div>
+
+            <div class="note-row">
+              <p class="left-note">Every great story deserves an audience.<br>We would be honoured by yours.</p>
+              <div class="sticker" aria-hidden="true">YOU’RE<br><strong>INVITED!</strong></div>
+            </div>
           </div>
+
           <div class="page-bottomline"><span>STORIES COME ALIVE</span><span>01 / 02</span></div>
         </article>
 
-        <article class="paper-page right-page">
+        <!-- RIGHT PAGE : DETAILS -->
+        <article class="paper-page right-page" id="rightPage">
           <div class="page-topline"><span>YOU HAVE A SEAT</span><span>02 / 02</span></div>
+
           <div class="detail-brand">
-            <img src="./cinemathra-logo.png" alt="CINEMATHRA logo" class="cinemathra-logo">
+            <img src="assets/cinemathra-logo.png" alt="CINEMATHRA logo" class="cinemathra-logo">
             <div class="brand-divider"></div>
             <p class="brand-label">RAJARATA UNIVERSITY · SRI LANKA</p>
           </div>
+
           <div class="personal-greeting">
             <p class="small-label">THIS INVITATION IS FOR</p>
             <h2 id="lecturerName">Distinguished Guest</h2>
             <p id="lecturerTitle" class="lecturer-title">Invited Guest</p>
           </div>
+
           <p class="invite-copy">It is our pleasure to invite you to <strong>CINEMATHRA 2026</strong>, a celebration of creativity, cinema and the stories that bring us together.</p>
-          <div class="event-facts">
-            <div class="fact"><span class="fact-icon">▦</span><div><small>DATE</small><strong id="eventDate">05 NOVEMBER 2026</strong></div></div>
-            <div class="fact"><span class="fact-icon">◷</span><div><small>TIME</small><strong id="eventTime">TIME TO BE ANNOUNCED</strong></div></div>
-            <div class="fact"><span class="fact-icon">⌖</span><div><small>VENUE</small><strong id="eventVenue">Andara Wawa Theatre</strong></div></div>
+
+          <div class="fact-grid">
+            <!-- DATE -->
+            <div class="fact fact-date">
+              <div class="cal">
+                <div class="cal-top"><span class="cal-ring"></span><span class="cal-ring"></span><span id="calMonth">NOV</span></div>
+                <div class="cal-day" id="calDay">05</div>
+              </div>
+              <div class="fact-text">
+                <small>DATE</small>
+                <strong class="date-month wave" id="eventMonth">NOVEMBER</strong>
+                <span class="date-sub" id="eventDate">2026 · THURSDAY</span>
+              </div>
+            </div>
+
+            <!-- TIME -->
+            <div class="fact fact-time">
+              <svg class="fact-icon clock-ico" viewBox="0 0 64 64" aria-hidden="true">
+                <circle class="clock-pulse" cx="32" cy="32" r="28"/>
+                <circle class="clock-face" cx="32" cy="32" r="28"/>
+                <path class="clock-ticks" d="M32 8v4M56 32h-4M32 56v-4M8 32h4"/>
+                <path class="hand hand-hour" d="M32 32V19"/>
+                <path class="hand hand-min" d="M32 32V12"/>
+                <circle cx="32" cy="32" r="3" class="clock-dot"/>
+              </svg>
+              <div class="fact-text">
+                <small>TIME</small>
+                <strong class="fact-main" id="eventTime">TIME TO BE ANNOUNCED</strong>
+              </div>
+            </div>
+
+            <!-- VENUE -->
+            <div class="fact fact-venue">
+              <svg class="fact-icon pin-ico" viewBox="0 0 64 64" aria-hidden="true">
+                <ellipse class="pin-shadow" cx="32" cy="56" rx="12" ry="4"/>
+                <circle class="pin-ripple" cx="32" cy="56" r="8"/>
+                <g class="pin-body">
+                  <path d="M32 6C21 6 13 14.2 13 24.4 13 38 32 54 32 54s19-16 19-29.6C51 14.2 43 6 32 6z"/>
+                  <circle cx="32" cy="24" r="7" class="pin-hole"/>
+                </g>
+              </svg>
+              <div class="fact-text">
+                <small>VENUE</small>
+                <strong class="fact-main" id="eventVenue">Andara Wawa Theatre</strong>
+              </div>
+            </div>
           </div>
+
           <div class="organisers">
-            <div class="org-logo org-is"><img src="./is-logo.png" alt="Information Systems Department logo"><span>DEPARTMENT</span></div>
+            <div class="org-logo org-is"><img src="assets/is-logo.png" alt="Information Systems Department logo"><span>DEPARTMENT</span></div>
             <div class="org-caption"><span>PROUDLY PRESENTED BY</span><strong>Department of Information Systems</strong><small>Rajarata University of Sri Lanka</small></div>
-            <div class="org-logo org-bitsa"><img src="./bitsa-logo.jpg" alt="BITSA logo"><span>STUDENTS’ ASSOCIATION</span></div>
+            <div class="org-logo org-bitsa"><img src="assets/bitsa-logo.jpg" alt="BITSA logo"><span>STUDENTS’ ASSOCIATION</span></div>
           </div>
+
           <div class="page-bottomline"><span>LIGHTS. CAMERA. CINEMATHRA.</span><span>YOU’RE PART OF THE STORY.</span></div>
         </article>
       </div>
+
       <div class="spread-controls">
         <button type="button" class="back-button" id="backToCover">← BACK TO COVER</button>
         <span class="spread-caption">A PERSONAL INVITATION · CINEMATHRA 2026</span>
