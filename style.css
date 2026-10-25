@@ -434,3 +434,24 @@ h1 b { display:inline-block; color:var(--yellow); font-size:.72em; letter-spacin
     transform: none;
   }
 }
+/* Fix the YOU'RE INVITED sticker appearance */
+.left-page-content .sticker {
+  text-decoration: none !important;
+  border-bottom: none !important;
+  box-shadow: none;
+  background-image: none;
+  outline: none;
+}
+
+/* Remove underline from sticker text */
+.left-page-content .sticker,
+.left-page-content .sticker strong {
+  text-decoration: none !important;
+  border-bottom: none !important;
+}
+
+/* Keep the continuous animation */
+.invitation-screen .sticker {
+  animation: stickerPulse 1.8s ease-in-out infinite;
+  transform-origin: center;
+}
