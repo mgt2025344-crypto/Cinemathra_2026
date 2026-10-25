@@ -390,6 +390,75 @@ h1 b { display:inline-block; color:var(--yellow); font-size:.72em; letter-spacin
   .cover-footer { padding-top: 10px; }
 }
 
+
+/* =========================================================
+   COVER — comic book extras
+   ========================================================= */
+.panel-border { position: absolute; inset: 8px; z-index: 3; pointer-events: none; border: 4px solid var(--ink);
+  box-shadow: inset 0 0 0 3px rgba(255,249,235,.25); animation: panelIn .8s .1s ease-out both; }
+.halftone { position: absolute; inset: 0; z-index: -1; pointer-events: none; opacity: .75;
+  background: radial-gradient(circle, rgba(255,213,46,.55) 2.2px, transparent 2.8px) 0 0 / 14px 14px;
+  -webkit-mask-image: radial-gradient(circle at 0% 100%, #000, transparent 42%), radial-gradient(circle at 100% 0%, #000, transparent 42%);
+  mask-image: radial-gradient(circle at 0% 100%, #000, transparent 42%), radial-gradient(circle at 100% 0%, #000, transparent 42%);
+  animation: halftoneDrift 8s linear infinite; }
+.speed-lines { position: absolute; left: 50%; top: 50%; width: max(130vw, 900px); aspect-ratio: 1; translate: -50% -50%; pointer-events: none;
+  background: repeating-conic-gradient(from 0deg, rgba(255,249,235,.13) 0 3deg, transparent 3deg 9deg);
+  -webkit-mask-image: radial-gradient(circle, transparent 12%, #000 34%, transparent 66%);
+  mask-image: radial-gradient(circle, transparent 12%, #000 34%, transparent 66%);
+  animation: speedSpin 70s linear infinite, fadeIn 1.2s .2s both; }
+
+/* speech bubble with cycling words */
+.speech { position: absolute; z-index: 2; right: clamp(2%, 9vw, 16%); top: 2%; display: grid; place-items: center; min-width: 7.6em; padding: .55em .9em;
+  font: 400 clamp(17px, 2.4vw, 26px)/1 Anton, Impact, sans-serif; letter-spacing: .04em; color: var(--ink);
+  background: #fff; border: 4px solid var(--ink); border-radius: 26px 26px 26px 6px; box-shadow: 5px 5px 0 var(--ink);
+  transform: rotate(5deg); transform-origin: 0 100%; animation: bubblePop .7s 1.6s cubic-bezier(.3,1.7,.4,1) both, bubbleBob 3.6s 2.4s ease-in-out infinite; }
+.speech::after { content: ""; position: absolute; left: 14px; bottom: -17px; width: 22px; height: 22px; background: #fff; border-right: 4px solid var(--ink); border-bottom: 4px solid var(--ink); transform: skewX(28deg) rotate(30deg); transform-origin: top left; }
+.speech .w { grid-area: 1 / 1; opacity: 0; animation: wordCycle 6s infinite; }
+.speech .w1 { animation-delay: 2.2s; } .speech .w2 { animation-delay: 4.2s; color: var(--yellow); -webkit-text-stroke: 1.5px var(--ink); } .speech .w3 { animation-delay: 6.2s; color: var(--red); }
+
+/* sound-effect stickers */
+.sfx { position: absolute; z-index: 2; display: grid; place-items: center; width: clamp(74px, 10vw, 112px); aspect-ratio: 1; color: var(--ink); text-align: center;
+  font: 400 clamp(13px, 1.7vw, 19px)/1 Anton, Impact, sans-serif; letter-spacing: .05em; filter: drop-shadow(3px 3px 0 var(--ink)); }
+.sfx::before { content: ""; position: absolute; inset: 0; z-index: -1; background: var(--yellow); clip-path: polygon(50.0% 0.0%,59.3% 15.2%,75.0% 6.7%,75.5% 24.5%,93.3% 25.0%,84.8% 40.7%,100.0% 50.0%,84.8% 59.3%,93.3% 75.0%,75.5% 75.5%,75.0% 93.3%,59.3% 84.8%,50.0% 100.0%,40.7% 84.8%,25.0% 93.3%,24.5% 75.5%,6.7% 75.0%,15.2% 59.3%,0.0% 50.0%,15.2% 40.7%,6.7% 25.0%,24.5% 24.5%,25.0% 6.7%,40.7% 15.2%); }
+.sfx-clap { left: clamp(1%, 9vw, 15%); bottom: 4%; rotate: -14deg; animation: sfxPop .6s 2.1s cubic-bezier(.3,1.8,.4,1) both, sfxShake 2.8s 3s ease-in-out infinite; }
+.sfx-zoom { right: clamp(1%, 7vw, 12%); bottom: 0; rotate: 10deg; width: clamp(62px, 8vw, 92px); animation: sfxPop .6s 2.4s cubic-bezier(.3,1.8,.4,1) both, sfxShake 3.2s 3.4s ease-in-out infinite; }
+.sfx-zoom::before { background: #fff; }
+
+/* title: slam in letter by letter */
+.welcome-screen h1 span .ch { animation: slamIn .7s cubic-bezier(.2,1.5,.4,1) both, titleBounce 5s ease-in-out infinite;
+  animation-delay: calc(var(--d, 0) * 1ms), calc(3200ms + var(--i, 0) * 90ms); }
+.welcome-screen h1 span { animation: titleShake .45s 1.25s ease-out both; }
+.welcome-screen h1 b { position: relative; isolation: isolate; animation: popIn .7s 1.5s cubic-bezier(.3,1.8,.4,1) both; }
+.welcome-screen h1 b::before { content: ""; position: absolute; z-index: -1; inset: -20% -24%; background: var(--ink); clip-path: polygon(50.0% 0.0%,59.3% 15.2%,75.0% 6.7%,75.5% 24.5%,93.3% 25.0%,84.8% 40.7%,100.0% 50.0%,84.8% 59.3%,93.3% 75.0%,75.5% 75.5%,75.0% 93.3%,59.3% 84.8%,50.0% 100.0%,40.7% 84.8%,25.0% 93.3%,24.5% 75.5%,6.7% 75.0%,15.2% 59.3%,0.0% 50.0%,15.2% 40.7%,6.7% 25.0%,24.5% 24.5%,25.0% 6.7%,40.7% 15.2%); animation: burstPulse 2.6s ease-in-out infinite; }
+.eyebrow { animation: fadeUp .6s .2s both; }
+.hero-subtitle { animation: fadeUp .7s 1.9s both; }
+.open-invite { animation: fadeUp .7s 2.1s both, btnWiggle 3.4s 3.4s ease-in-out infinite; }
+.tap-hint { animation: fadeIn .8s 2.5s both; }
+.cover-footer { animation: fadeIn .8s 2.3s both; }
+
+@keyframes panelIn { from { opacity: 0; inset: 24px; } to { opacity: 1; inset: 8px; } }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes speedSpin { to { rotate: 360deg; } }
+@keyframes halftoneDrift { to { background-position: 14px 14px; } }
+@keyframes bubblePop { from { opacity: 0; transform: rotate(5deg) scale(0); } to { opacity: 1; transform: rotate(5deg) scale(1); } }
+@keyframes bubbleBob { 0%,100% { translate: 0 0; } 50% { translate: 0 -7px; } }
+@keyframes wordCycle { 0% { opacity: 0; scale: .5; } 4%, 28% { opacity: 1; scale: 1; } 33%, 100% { opacity: 0; scale: 1.2; } }
+@keyframes sfxPop { from { opacity: 0; scale: 0; } to { opacity: 1; scale: 1; } }
+@keyframes sfxShake { 0%,86%,100% { translate: 0 0; } 89% { translate: -3px 2px; } 92% { translate: 3px -2px; } 95% { translate: -2px -1px; } }
+@keyframes slamIn { 0% { opacity: 0; transform: scale(3.2) rotate(-10deg) translateY(-.3em); } 70% { opacity: 1; transform: scale(.94) rotate(1.5deg); } 100% { opacity: 1; transform: none; } }
+@keyframes titleBounce { 0%,50%,100% { translate: 0 0; } 20% { translate: 0 -.08em; } 35% { translate: 0 0; } }
+@keyframes titleShake { 0%,100% { transform: none; } 20% { transform: translate(-5px, 3px) rotate(-.6deg); } 40% { transform: translate(5px, -3px) rotate(.6deg); } 60% { transform: translate(-3px, -2px); } 80% { transform: translate(3px, 2px); } }
+@keyframes popIn { from { opacity: 0; transform: scale(0) rotate(-12deg); } to { opacity: 1; transform: none; } }
+@keyframes burstPulse { 0%,100% { scale: .95 .92; } 50% { scale: 1.06 1.08; } }
+@keyframes btnWiggle { 0%,88%,100% { rotate: 0deg; } 91% { rotate: -2.5deg; } 94% { rotate: 2.5deg; } 97% { rotate: -1.5deg; } }
+@media (max-width: 700px) {
+  .panel-border { inset: 6px; border-width: 3px; }
+  .speech { right: 3%; top: 0; font-size: 16px; border-width: 3px; }
+  .sfx-clap { left: 2%; bottom: 0; width: 68px; }
+  .sfx-zoom { right: 2%; width: 58px; }
+}
+@media (max-height: 520px) and (orientation: landscape) { .speech, .sfx { display: none; } }
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: .01ms !important; animation-delay: 0s !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; transition-duration: .01ms !important; }
 }
