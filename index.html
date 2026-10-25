@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#171114">
+  <meta name="description" content="A personal invitation to CINEMATHRA 2026.">
+  <title>CINEMATHRA 2026 | Personal Invitation</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="film-grain" aria-hidden="true"></div>
+  <main>
+    <!-- WELCOME / COVER -->
+    <section class="welcome-screen" id="welcomeScreen" aria-labelledby="heroTitle">
+      <div class="topline"><span>RAJARATA UNIVERSITY</span><span>THE STUDENT FILM FESTIVAL · 2026</span></div>
+      <div class="hero-art" aria-hidden="true">
+        <div class="orbit orbit-one"></div><div class="orbit orbit-two"></div>
+        <div class="camera-illustration">
+          <div class="reel reel-back"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+          <div class="camera-body"><div class="camera-window"></div><div class="camera-lens"></div><div class="camera-knob"></div><div class="camera-foot"></div></div>
+          <div class="reel reel-front"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+          <div class="camera-flash"></div>
+        </div>
+        <div class="film-ribbon ribbon-left"></div><div class="film-ribbon ribbon-right"></div>
+        <span class="burst burst-one">✦</span><span class="burst burst-two">✳</span>
+      </div>
+      <div class="hero-copy">
+        <p class="eyebrow"><span class="eyebrow-line"></span> YOUR NEXT SCENE STARTS HERE</p>
+        <h1 id="heroTitle"><span>CINEMATHRA</span><b>2026</b></h1>
+        <p class="hero-subtitle">A celebration of stories, frames & imagination.</p>
+        <button class="open-invite" id="openInvitation" type="button">
+          <span>OPEN YOUR INVITATION</span><span class="button-arrow" aria-hidden="true">↗</span>
+        </button>
+        <p class="tap-hint">TAP TO TURN THE PAGE <span>↓</span></p>
+      </div>
+      <div class="cover-footer"><span class="footer-star">✳</span><span>ONE EVENT. COUNTLESS STORIES.</span><span class="footer-star">✳</span></div>
+    </section>
+
+    <!-- INVITATION / OPEN SPREAD -->
+    <section class="invitation-screen" id="invitationScreen" aria-labelledby="inviteHeading" hidden>
+      <div class="spread-wrap" id="spreadWrap">
+        <article class="paper-page left-page">
+          <div class="page-topline"><span>ISSUE NO. 01</span><span>CINEMATHRA ’26</span></div>
+          <div class="mini-filmstrip" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+          <div class="left-page-content">
+            <p class="comic-kicker">SPECIAL INVITATION</p>
+            <h2>THE<br><em>BIG</em><br>SCREEN<br>AWAITS.</h2>
+            <div class="yellow-scribble" aria-hidden="true"></div>
+            <p class="left-note">Every great story deserves an audience.<br>We would be honoured by yours.</p>
+            <div class="sticker">YOU’RE<br><strong>INVITED!</strong></div>
+          </div>
+          <div class="page-bottomline"><span>STORIES COME ALIVE</span><span>01 / 02</span></div>
+        </article>
+
+        <article class="paper-page right-page">
+          <div class="page-topline"><span>YOU HAVE A SEAT</span><span>02 / 02</span></div>
+          <div class="detail-brand">
+            <img src="assets/cinemathra-logo.png" alt="CINEMATHRA logo" class="cinemathra-logo">
+            <div class="brand-divider"></div>
+            <p class="brand-label">RAJARATA UNIVERSITY · SRI LANKA</p>
+          </div>
+          <div class="personal-greeting">
+            <p class="small-label">THIS INVITATION IS FOR</p>
+            <h2 id="lecturerName">Distinguished Guest</h2>
+            <p id="lecturerTitle" class="lecturer-title">Invited Guest</p>
+          </div>
+          <p class="invite-copy">It is our pleasure to invite you to <strong>CINEMATHRA 2026</strong>, a celebration of creativity, cinema and the stories that bring us together.</p>
+          <div class="event-facts">
+            <div class="fact"><span class="fact-icon">▦</span><div><small>DATE</small><strong id="eventDate">05 NOVEMBER 2026</strong></div></div>
+            <div class="fact"><span class="fact-icon">◷</span><div><small>TIME</small><strong id="eventTime">TIME TO BE ANNOUNCED</strong></div></div>
+            <div class="fact"><span class="fact-icon">⌖</span><div><small>VENUE</small><strong id="eventVenue">Andara Wawa Theatre</strong></div></div>
+          </div>
+          <div class="organisers">
+            <div class="org-logo org-is"><img src="assets/is-logo.png" alt="Information Systems Department logo"><span>DEPARTMENT</span></div>
+            <div class="org-caption"><span>PROUDLY PRESENTED BY</span><strong>Department of Information Systems</strong><small>Rajarata University of Sri Lanka</small></div>
+            <div class="org-logo org-bitsa"><img src="assets/bitsa-logo.jpg" alt="BITSA logo"><span>STUDENTS’ ASSOCIATION</span></div>
+          </div>
+          <div class="page-bottomline"><span>LIGHTS. CAMERA. CINEMATHRA.</span><span>YOU’RE PART OF THE STORY.</span></div>
+        </article>
+      </div>
+      <div class="spread-controls">
+        <button type="button" class="back-button" id="backToCover">← BACK TO COVER</button>
+        <span class="spread-caption">A PERSONAL INVITATION · CINEMATHRA 2026</span>
+      </div>
+    </section>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>
