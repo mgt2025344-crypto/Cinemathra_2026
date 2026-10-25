@@ -4,7 +4,7 @@
 //                 "TIME TO BE ANNOUNCED"  (shown as text)
 const EVENT_DETAILS = {
   date: "05 November 2026",
-  time: "TIME TO BE ANNOUNCED",
+  time: "5.00 pm",
   venue: "Andara Wawa Theatre"
 };
 
