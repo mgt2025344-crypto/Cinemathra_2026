@@ -4,7 +4,7 @@
 //                 "TIME TO BE ANNOUNCED"  (shown as text)
 const EVENT_DETAILS = {
   date: "05 November 2026",
-  time: "5.00 pm",
+  time: "TIME TO BE ANNOUNCED",
   venue: "Andara Wawa Theatre"
 };
 
@@ -100,8 +100,10 @@ function prepareLetters() {
   splitLetters(document.getElementById("eventMonth"), 1100, 55);
 }
 prepareLetters();
+splitLetters(document.querySelector(".welcome-screen h1 span"), 350, 85);
 
 /* ---------- screens ---------- */
+const stage = document.querySelector("main");
 const welcomeScreen = document.getElementById("welcomeScreen");
 const invitationScreen = document.getElementById("invitationScreen");
 const openButton = document.getElementById("openInvitation");
@@ -110,6 +112,21 @@ const pages = [document.getElementById("leftPage"), document.getElementById("rig
 
 let observer = null;
 let countTimer = null;
+let pageTimer = null;
+let rightTimer = null;
+let unfoldReadyAt = 0;
+let isBusy = false;
+
+// The cover swings open on its left edge, like the front of a real invitation.
+const COVER_MS = prefersReducedMotion ? 1 : 1050;
+const COVER_EASE = "cubic-bezier(.65, 0, .35, 1)";
+const COVER_FRAMES = [
+  { transform: "rotateY(0deg)",   filter: "brightness(1)" },
+  { transform: "rotateY(-40deg)",  filter: "brightness(.9)", offset: .38 },
+  { transform: "rotateY(-92deg)",  filter: "brightness(.5)" }
+];
+
+function isStacked() { return window.matchMedia("(max-width: 860px)").matches; }
 
 // Count the calendar day up (00 → 05) with a little drama.
 function runDayCounter() {
@@ -129,10 +146,24 @@ function runDayCounter() {
   countTimer = requestAnimationFrame(tick);
 }
 
-function activatePage(page) {
+function doActivate(page) {
   if (page.classList.contains("in-view")) return;
   page.classList.add("in-view");
   if (page.id === "rightPage") runDayCounter();
+}
+
+function activatePage(page) {
+  if (page.classList.contains("in-view")) return;
+  // On a two-page spread, wait until the right page has finished unfolding.
+  if (page.id === "rightPage" && !isStacked() && !prefersReducedMotion) {
+    const wait = unfoldReadyAt - performance.now();
+    if (wait > 0) {
+      clearTimeout(rightTimer);
+      rightTimer = setTimeout(() => doActivate(page), wait);
+      return;
+    }
+  }
+  doActivate(page);
 }
 
 function watchPages() {
@@ -146,6 +177,8 @@ function watchPages() {
 }
 
 function stopWatching() {
+  clearTimeout(pageTimer);
+  clearTimeout(rightTimer);
   if (observer) { observer.disconnect(); observer = null; }
   cancelAnimationFrame(countTimer);
   pages.forEach(page => page.classList.remove("in-view"));
@@ -153,34 +186,47 @@ function stopWatching() {
 }
 
 function openInvitation() {
-  welcomeScreen.classList.add("is-leaving");
-  const finish = () => {
+  if (isBusy) return;
+  isBusy = true;
+  window.scrollTo(0, 0);
+  stage.classList.add("is-transitioning");
+
+  // The invitation sits underneath the cover while the cover swings open.
+  invitationScreen.hidden = false;
+  invitationScreen.classList.remove("is-opening");
+  void invitationScreen.offsetWidth;
+  invitationScreen.classList.add("is-opening");
+
+  unfoldReadyAt = performance.now() + 1900;
+  pageTimer = setTimeout(watchPages, prefersReducedMotion ? 0 : 1000);
+
+  const cover = welcomeScreen.animate(COVER_FRAMES, { duration: COVER_MS, easing: COVER_EASE, fill: "forwards" });
+  cover.onfinish = () => {
     welcomeScreen.hidden = true;
-    invitationScreen.hidden = false;
-    invitationScreen.classList.remove("is-opening");
-    void invitationScreen.offsetWidth;
-    invitationScreen.classList.add("is-opening");
-    window.scrollTo(0, 0);
-    watchPages();
+    cover.cancel();
+    stage.classList.remove("is-transitioning");
+    isBusy = false;
   };
-  const fade = welcomeScreen.animate(
-    [{ opacity: 1, transform: "scale(1)" }, { opacity: 0, transform: "scale(.97)" }],
-    { duration: prefersReducedMotion ? 1 : 300, easing: "ease-in", fill: "forwards" }
-  );
-  fade.onfinish = finish;
 }
 
 function returnToCover() {
-  stopWatching();
-  invitationScreen.hidden = true;
-  invitationScreen.classList.remove("is-opening");
-  welcomeScreen.hidden = false;
-  welcomeScreen.classList.remove("is-leaving");
-  welcomeScreen.animate(
-    [{ opacity: 0, transform: "scale(.98)" }, { opacity: 1, transform: "scale(1)" }],
-    { duration: prefersReducedMotion ? 1 : 350, easing: "ease-out", fill: "forwards" }
-  );
+  if (isBusy) return;
+  isBusy = true;
   window.scrollTo(0, 0);
+  stage.classList.add("is-transitioning");
+  welcomeScreen.hidden = false;
+
+  // The cover swings shut over the invitation.
+  const cover = welcomeScreen.animate(COVER_FRAMES, { duration: COVER_MS, easing: COVER_EASE, fill: "forwards", direction: "reverse" });
+  cover.onfinish = () => {
+    stopWatching();
+    invitationScreen.hidden = true;
+    invitationScreen.classList.remove("is-opening");
+    cover.cancel();
+    stage.classList.remove("is-transitioning");
+    window.scrollTo(0, 0);
+    isBusy = false;
+  };
 }
 
 openButton.addEventListener("click", openInvitation);
